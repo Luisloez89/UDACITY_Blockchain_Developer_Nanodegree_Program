@@ -201,14 +201,19 @@ class Blockchain {
         return new Promise(async (resolve, reject) => {
             let height = 0
             for(let block of self.chain){
-                if(height > 0) {
-                    let prevBlock = self.chain[height - 1]
-                    if(block.previousBlockHash !== prevBlock.hash){
-                        errorLog.push(new Error(`Invalid block at ${height}`))
+                if(await block.validate()) {
+                    if(height > 0) {
+                        let prevBlock = self.chain[height - 1]
+                        if(block.previousBlockHash !== prevBlock.hash){
+                            errorLog.push(new Error(`Invalid block at ${height}`))
+                        }
                     }
+                }else{
+                    errorLog.push(new Error(`Invalid block at height: ${height}`))
                 }
                 height++
             }
+
             resolve(errorLog)
         });
     }
