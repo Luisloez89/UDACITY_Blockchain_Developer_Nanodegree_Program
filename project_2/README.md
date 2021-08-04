@@ -136,3 +136,18 @@ compilers: {
 ---
 
 Do not use the [Old depreacted zipped starter code](https://s3.amazonaws.com/video.udacity-data.com/topher/2019/January/5c51c4c0_project-5-starter-code/project-5-starter-code.zip)
+
+
+## Versions
+
+| Package   | Version |
+|:-------:|:-------------|
+|Truffle| v5.4.3 |
+|OpenZeppelin| 2.4.0 |
+
+## Token Data
+
+|Name| Crypto Star Token |
+|Symbol| CST |
+|Rinkeby Address| 0x9edd89c874b20773436E05575256ba1E3839F107 |
+
