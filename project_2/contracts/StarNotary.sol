@@ -66,6 +66,12 @@ contract StarNotary is ERC721Full {
         //2. You don't have to check for the price of the token (star)
         //3. Get the owner of the two tokens (ownerOf(_tokenId1), ownerOf(_tokenId1)
         //4. Use _transferFrom function to exchange the tokens.
+        address sender1 = ownerOf(_tokenId1);
+        address sender2 = ownerOf(_tokenId2);
+		if (msg.sender == sender1 || msg.sender == sender2) {
+	       	transferFrom(sender1, sender2, _tokenId1);
+	       	transferFrom(sender2, sender1, _tokenId2);
+		}
     }
 
     // Implement Task 1 Transfer Stars
