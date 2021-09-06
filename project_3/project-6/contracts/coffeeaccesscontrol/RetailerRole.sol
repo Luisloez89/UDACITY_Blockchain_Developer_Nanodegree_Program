@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity >=0.5.0;
 
 // Import the library 'Roles'
 import "./Roles.sol";
@@ -52,4 +52,5 @@ contract RetailerRole {
         retailers.remove(account);
         emit RetailerRemoved(account);
     }
+
 }
