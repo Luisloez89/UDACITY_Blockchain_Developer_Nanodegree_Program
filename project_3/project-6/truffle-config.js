@@ -12,7 +12,7 @@ module.exports = {
       networkCheckTimeout: 999999
     },
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/4243cd6e24404d90aa26be793fe0e8f0`),
+      provider: () => new HDWalletProvider(mnemonic, `wss://rinkeby.infura.io/ws/v3/4243cd6e24404d90aa26be793fe0e8f0`),
         network_id: 4,       // rinkeby's id
         gas: 4500000,        // rinkeby has a lower block limit than mainnet
         gasPrice: 10000000000,

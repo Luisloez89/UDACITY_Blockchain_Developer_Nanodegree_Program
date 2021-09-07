@@ -2657,9 +2657,85 @@
     "name": "solc",
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x2d57894814C2aD3deE5Bcc3876bf1769af456DB5",
+      "transactionHash": "0x31270f34b4451e1cd83cdf504230e994251f234241671aa9af70de771a47ba87"
+    },
+    "5777": {
+      "events": {
+        "0x28b26e7a3d20aedbc5f8f2ebf7da671c0491723a2b78f47a097b0e46dee07142": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ConsumerAdded",
+          "type": "event"
+        },
+        "0xe3f5ed5f263f1f01764a96edfc7d025f511ec5f7d180e8816908b78bcf74f098": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ConsumerRemoved",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xD5865cBd48b5D8088165129F9235d192dcd87e84",
+      "transactionHash": "0xc120a72a3bcdee05207ee8bb6fac7f8477eb61a1619ae36b27c7559ba6d95c15"
+    },
+    "1630952768290": {
+      "events": {},
+      "links": {},
+      "address": "0xA65B87754E0A73860AA6B7eb6E95D79CD2d893d2",
+      "transactionHash": "0xd9e05c8ba39d7c69e30925e9ddc8c6d6bb4ac21541ad21cd46cbbf6f10ff44f6"
+    },
+    "1631006525239": {
+      "events": {
+        "0x28b26e7a3d20aedbc5f8f2ebf7da671c0491723a2b78f47a097b0e46dee07142": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ConsumerAdded",
+          "type": "event"
+        },
+        "0xe3f5ed5f263f1f01764a96edfc7d025f511ec5f7d180e8816908b78bcf74f098": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ConsumerRemoved",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xd401AF0e681B846D20fa71003d68Cc589d1216B9",
+      "transactionHash": "0xbcd2578554c3c441c75e2b786c12a29e1ddbf4a5a40bcacdd29fbe304505aa8d"
+    }
+  },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-06T19:10:02.608Z",
+  "updatedAt": "2021-09-07T09:30:52.279Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

@@ -2657,9 +2657,85 @@
     "name": "solc",
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0xfd0cCCD07E8eaa1348De2b04ECbc3441B5F73F54",
+      "transactionHash": "0x00189c024bd351465a772cac8f89902977b92c33463cfde48d412f74e7d9afd2"
+    },
+    "5777": {
+      "events": {
+        "0x2e0ded4123377a3c2bc9a26f1717655a129e2f20752924d42e730ec89c83dbd0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "FarmerAdded",
+          "type": "event"
+        },
+        "0xa5e0f060af304ab17dd418c7927e3da3ae7868189bf387aee09ab179ccc572f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "FarmerRemoved",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xFB91780F97De5aeEB00bEDa172508Abb76f101bf",
+      "transactionHash": "0xb59107d4f45fd05597a30892f6b70f07d635140d96d930bbe8e5107794e5b6fd"
+    },
+    "1630952768290": {
+      "events": {},
+      "links": {},
+      "address": "0xf2ee0b0Cdcae5013930B92c0Ba54F7F7f1933613",
+      "transactionHash": "0xc62fbbc7a1ab79372423f0f42162e9d619c65c296a98523efced5b27f9afff99"
+    },
+    "1631006525239": {
+      "events": {
+        "0x2e0ded4123377a3c2bc9a26f1717655a129e2f20752924d42e730ec89c83dbd0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "FarmerAdded",
+          "type": "event"
+        },
+        "0xa5e0f060af304ab17dd418c7927e3da3ae7868189bf387aee09ab179ccc572f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "FarmerRemoved",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x10D897c2d238E236fD298BE5dE37Fd02787f1357",
+      "transactionHash": "0x81017489a11499ba1b4cab6d4144e57e9fcc2b8fe7dfd38ba580c7c0cf38ab3e"
+    }
+  },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-06T19:10:02.615Z",
+  "updatedAt": "2021-09-07T09:30:52.157Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
