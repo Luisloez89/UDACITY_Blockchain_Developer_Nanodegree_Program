@@ -116,3 +116,8 @@ Truffle v5.4.9 (core: 5.4.9)
 Solidity - 0.5.0 (solc-js)
 Node v14.17.3
 Web3.js v1.5.2
+
+## Contract Address in Rinkeby test network
+- Contract address: 0xA1bF45e07B3E250200AcEB85935CD595c2eE394e
+
+- Etherscan link: https://rinkeby.etherscan.io/address/0xA1bF45e07B3E250200AcEB85935CD595c2eE394e
