@@ -95,8 +95,6 @@ npm run dev
 ## Built With
 
 * [Ethereum](https://www.ethereum.org/) - Ethereum is a decentralized platform that runs smart contracts
-* [IPFS](https://ipfs.io/) - IPFS is the Distributed Web | A peer-to-peer hypermedia protocol
-to make the web faster, safer, and more open.
 * [Truffle Framework](http://truffleframework.com/) - Truffle is the most popular development framework for Ethereum with a mission to make your life a whole lot easier.
 
 
@@ -109,15 +107,16 @@ See also the list of [contributors](https://github.com/your/project/contributors
 * Solidity
 * Ganache-cli
 * Truffle
-* IPFS
 
 ## Libraries used:
 Truffle v5.4.9 (core: 5.4.9)
 Solidity - 0.5.0 (solc-js)
 Node v14.17.3
-Web3.js v1.5.2
+Web3.js v1.5.2 - Allow local/remote ethereum node interaction
 
-## Contract Address in Rinkeby test network
+## Transaction and contract Addresses in Rinkeby test network
+- Transaction address: 0xd38aeaa3507d05f0e2e839a29cb36fcdcfe30355ae5b9d997defd54e5d24481a
+
 - Contract address: 0xA1bF45e07B3E250200AcEB85935CD595c2eE394e
 
 - Etherscan link: https://rinkeby.etherscan.io/address/0xA1bF45e07B3E250200AcEB85935CD595c2eE394e
