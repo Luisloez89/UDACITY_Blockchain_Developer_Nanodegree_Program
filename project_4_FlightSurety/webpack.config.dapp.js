@@ -19,7 +19,7 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif|ico)$/,
         use: [
           'file-loader'
         ]
@@ -33,7 +33,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ 
-      template: path.join(__dirname, "src/dapp/index.html")
+      template: path.join(__dirname, "src/dapp/index.html"),
+      favicon: path.join(__dirname, "src/dapp/favicon.ico")
     })
   ],
   resolve: {
