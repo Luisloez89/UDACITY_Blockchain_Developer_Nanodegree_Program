@@ -1,52 +1,130 @@
 # FlightSurety
 
-FlightSurety is a sample application project for Udacity's Blockchain course.
+Udacity Blockchain Developer Nanodegree project Flight Surety.
 
-## Install
+### Libraries
+Library      | Version
+------------ | -------------
+Node             |v14.15.3
+Solidity         |v0.5.16
+openzeppelin-solidity |v2.1.2
+Truffle          |v5.1.63
+truffle-hdwallet-provider |v1.0.17
+truffle-assertions   |v0.9.2
+@truffle/contract | 4.3.9
+web3             |v1.3.3
 
-This repository contains Smart Contract code in Solidity (using Truffle), tests (also using Truffle), dApp scaffolding (using HTML, CSS and JS) and server app scaffolding.
+### Testing libraries
+Library      | Version
+------------ | -------------
+truffle-assertions             |v0.9.2
+Chai         |v4.2.0
 
-To install, download or clone the repo, then:
+
+## Installation
+
+To install, download or clone this repo, then run:
 
 `npm install`
-`truffle compile`
 
-## Develop Client
 
-To run truffle tests:
+## DApp Development and Testing
 
-`truffle test ./test/flightSurety.js`
-`truffle test ./test/oracles.js`
+1. **Compile contracts**
+    ```
+    truffle compile
+    ```
 
-To use the dapp:
+2. **Run Ganache CLI**
+    
+    Run Ganache CLI with the following parameters:
+    ```
+    ganache-cli --accounts=50 --gasLimit=0x1fffffffffffff --allowUnlimitedContractSize
+    ```
 
-`truffle migrate`
-`npm run dapp`
+3. **Run Truffle Tests**:
+    ```
+    truffle test ./test/flightSurety.js
+    ````
+    ![flightSurety test](/screens/tests/truffle-flightSurety-test.png)
+    ```
+    truffle test ./test/oracles.js
+    ```
+    ![flightSurety test](/screens/tests/truffle-oracles-test.png)
 
-To view dapp:
 
-`http://localhost:8000`
+## DApp Deployment
 
-## Develop Server
+1. **Run Ganache CLI**
 
-`npm run server`
-`truffle test ./test/oracles.js`
+   Stop and run Ganache CLI again with the following parameters: 
+    ```
+    ganache-cli -m "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat" --accounts=50 --deterministic --gasLimit=0x1fffffffffffff --allowUnlimitedContractSize
+    ```
 
-## Deploy
+2. **Deploy Contracts**
+    ```
+    truffle migrate --reset --network development
+    ```
 
-To build dapp for prod:
-`npm run dapp:prod`
 
-Deploy the contents of the ./dapp folder
+## Launching FlightSurety DApp
+
+1. **Import Accounts**
+
+    Import contract owner, airline and passengers accounts from Ganache to Metamask using private keys. The following table shows the accounts to be imported to Metamask:
+
+    |# | Account  | Default| Metamask|
+    |-- | ---- | --------- | --------|
+    |1  |owner | |   |
+    |2  |airline | 5 airline accounts| import|
+    |3  |airline | |import|
+    |4  |airline |  |import|
+    |5  |airline |   |import|
+    |6  |airline ||import|
+    |7  |passenger | 3 passenger accounts|import|
+    |8  |passenger | |import|
+    |9  |passenger | |import|
+    |10 |oracle | 40 oracles | don't import|
+    |.. |.. | .. |..|
+    |50 |oracle |  ||
+    
+
+
+2. **Start the Server**
+    
+    Wait until the 40 oracles have been registered before starting the DApp
+    ```
+    npm run server
+    ```
+
+3. **Start the DApp**
+    ```
+    npm run dapp
+    ```
+
+    Open http://localhost:8000 in browser.
+
+
+## DApp Main Screens
+
+### Administration
+![flightSurety test](/screens/dapp/1-administration.png)
+
+### Airlines
+![flightSurety test](/screens/dapp/2-airlines.png)
+
+### Flights
+![flightSurety test](/screens/dapp/3-flights.png)
+
+### Insurances
+![flightSurety test](/screens/dapp/4-buy-insurance.png)
+![flightSurety test](/screens/dapp/5-insurances.png)
 
 
 ## Resources
 
-* [How does Ethereum work anyway?](https://medium.com/@preethikasireddy/how-does-ethereum-work-anyway-22d1df506369)
-* [BIP39 Mnemonic Generator](https://iancoleman.io/bip39/)
 * [Truffle Framework](http://truffleframework.com/)
 * [Ganache Local Blockchain](http://truffleframework.com/ganache/)
-* [Remix Solidity IDE](https://remix.ethereum.org/)
 * [Solidity Language Reference](http://solidity.readthedocs.io/en/v0.4.24/)
-* [Ethereum Blockchain Explorer](https://etherscan.io/)
 * [Web3Js Reference](https://github.com/ethereum/wiki/wiki/JavaScript-API)

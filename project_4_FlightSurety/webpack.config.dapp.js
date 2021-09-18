@@ -5,7 +5,11 @@ module.exports = {
   entry: ['babel-polyfill', path.join(__dirname, "src/dapp")],
   output: {
     path: path.join(__dirname, "prod/dapp"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    crossOriginLoading: false
+  },
+  node: {
+    fs: 'empty'
   },
   module: {
     rules: [
@@ -19,7 +23,7 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(png|svg|jpg|gif|ico)$/,
+        test: /\.(png|svg|jpg|gif)$/,
         use: [
           'file-loader'
         ]
@@ -31,10 +35,10 @@ module.exports = {
       }
     ]
   },
+  devtool: false,
   plugins: [
     new HtmlWebpackPlugin({ 
-      template: path.join(__dirname, "src/dapp/index.html"),
-      favicon: path.join(__dirname, "src/dapp/favicon.ico")
+      template: path.join(__dirname, "src/dapp/index.html")
     })
   ],
   resolve: {
@@ -43,6 +47,13 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dapp"),
     port: 8000,
-    stats: "minimal"
+    stats: "minimal",
+    headers: { "Access-Control-Allow-Origin": "*" },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
+    },
   }
 };
