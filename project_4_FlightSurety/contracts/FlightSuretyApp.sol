@@ -381,7 +381,7 @@ contract FlightSuretyApp {
     /** 
      * @dev Checks whetehr a flight is delayed (status code 20)
      */
-    function IsFlightDelayed(
+    function isFlightDelayed(
                                 bytes32 flightKey
                             )
                             external
@@ -389,7 +389,7 @@ contract FlightSuretyApp {
                             requireIsOperational
                             returns (bool)
     {
-        return flightSuretyData.IsFlightDelayed(flightKey);
+        return flightSuretyData.isFlightDelayed(flightKey);
     }
 
 
@@ -766,7 +766,7 @@ contract FlightSuretyData {
 
     function getFlight(bytes32 flightKey) external view returns (address airline, string memory flight, uint256 departureTime, uint8 statusCode);
 
-    function IsFlightDelayed(bytes32 flightKey) external view returns (bool);
+    function isFlightDelayed(bytes32 flightKey) external view returns (bool);
 
     function isFlightRegistered(bytes32 flightKey) external view returns (bool);
 

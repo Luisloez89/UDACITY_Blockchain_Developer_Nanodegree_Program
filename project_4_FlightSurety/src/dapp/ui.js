@@ -265,7 +265,7 @@ export default class UI {
 
                 $(badgeID).removeClass();
                 $(badgeID).text('fetching..');
-                contract.IsFlightDelayed(request).then(function (flightDelayed) {
+                contract.isFlightDelayed(request).then(function (flightDelayed) {
                     setTimeout(function () {
                         $(badgeID).addClass('badge');
                         $(badgeID).addClass('rounded-pill');                

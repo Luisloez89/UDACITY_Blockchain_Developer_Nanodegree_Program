@@ -28,9 +28,9 @@ contract FlightSuretyData {
     }
 
     struct FlightInsurance {
-        mapping(address => uint256) insuranceAmount; // Purchased flight insurance amount per passenger (up to 1 ether)
-        mapping(address => uint256) payOutAmount;    // Refunded amount per passenger
-        address[] passengers;                        // All insured passengers in a flight
+        mapping(address => uint256) insuranceAmount; 
+        mapping(address => uint256) payOutAmount;
+        address[] passengers;
         bool isPaidOut;
     }
 
@@ -38,23 +38,20 @@ contract FlightSuretyData {
     mapping(address => Airline) private airlines;
     mapping(bytes32 => Flight) private flights;
     mapping(address => bytes32[]) private airlineFlights;
-    mapping(bytes32 => FlightInsurance) private insurances; // Insurance per flight
-    mapping(address => uint256) private insuranceRefunds; // Refunds per passenger
+    mapping(bytes32 => FlightInsurance) private insurances;
+    mapping(address => uint256) private insuranceRefunds;
     
-    address[] private registeredAirlines;           // Registered airline addresses
-    string[]  private registeredAirlineNames;       // Registered airline names
-    address[] private fundedAirlines;               // Funded airline addresses
-    bytes32[] private flightKeys;                   // Keys of registered flights
-    mapping(bytes32 => bool) private flightDelays;  // Flight delays per flight key 
-
-
-    uint256 public constant AIRLINE_MIN_FUND = 10 ether; // minimum fund required to participate in contract
+    address[] private registeredAirlines;           
+    string[]  private registeredAirlineNames;       
+    address[] private fundedAirlines;              
+    bytes32[] private flightKeys;                   
+    mapping(bytes32 => bool) private flightDelays;  
 
     /********************************************************************************************/
     /*                                       EVENT DEFINITIONS                                  */
     /********************************************************************************************/
-    event AuthorizedContract(address authContract);
-    event DeauthorizedContract(address authContract);
+    event authorizedContract(address authContract);
+    event deauthorizedContract(address authContract);
 
     /**
      * @dev Constructor
@@ -94,10 +91,7 @@ contract FlightSuretyData {
      * @dev Modifier that checks whether it is called from authorized contract
      */
     modifier requireAuthorizedCaller() {
-        require(
-            authorizedCallers[msg.sender] == true,
-            "Caller is not authorized"
-        );
+        require(authorizedCallers[msg.sender] == true, "Caller is not authorized");
         _;
     }
 
@@ -105,10 +99,7 @@ contract FlightSuretyData {
      * @dev Modifier that requires the caller to be a registered airline
      */
     modifier requireRegisteredAirline() {
-        require(
-            airlines[msg.sender].isRegistered,
-            "Caller is not a registered airline"
-        );
+        require(airlines[msg.sender].isRegistered, "Caller is not a registered airline");
         _;
     }
 
@@ -146,7 +137,7 @@ contract FlightSuretyData {
      */
     function authorizeCaller(address caller) public requireContractOwner {
         authorizedCallers[caller] = true;
-        emit AuthorizedContract(caller);
+        emit authorizedContract(caller);
     }
 
     /**
@@ -154,7 +145,7 @@ contract FlightSuretyData {
      */
     function deauthorizeCaller(address caller) public requireContractOwner {
         authorizedCallers[caller] = false;
-        emit DeauthorizedContract(caller);
+        emit deauthorizedContract(caller);
     }
 
     /********************************************************************************************/
@@ -169,21 +160,16 @@ contract FlightSuretyData {
      *      Can only be called from FlightSuretyApp contract
      *
      */
-    function registerAirline(string calldata name, address airline)
-        external
-        requireAuthorizedCaller
-        requireIsOperational
+    function registerAirline(
+                                string calldata name, 
+                                address airline
+                            )
+                            external
+                            requireAuthorizedCaller
+                            requireIsOperational
     {
-        require(
-            !airlines[airline].isRegistered,
-            "Flight is already registered"
-        );
-        airlines[airline] = Airline({
-            airline: airline,
-            name: name,
-            isRegistered: true,
-            isFunded: false
-        });
+        require(!airlines[airline].isRegistered, "Flight is already registered");
+        airlines[airline] = Airline({airline: airline, name: name, isRegistered: true, isFunded: false});
         authorizedCallers[airline] = true; 
         registeredAirlines.push(airline);
         registeredAirlineNames.push(name);
@@ -194,10 +180,12 @@ contract FlightSuretyData {
      * @dev funding a registered airline.
      *
      */
-    function fundAirline(address airline)
-        external
-        requireIsOperational
-        requireAuthorizedCaller
+    function fundAirline(
+                            address airline
+                        )
+                        external
+                        requireIsOperational
+                        requireAuthorizedCaller
     {
         airlines[airline].isFunded = true;
         fundedAirlines.push(airline);
@@ -207,12 +195,14 @@ contract FlightSuretyData {
      * @dev Returns airline name
      *
      */
-    function getAirlineName(address airline)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller         
-        returns (string memory)
+    function getAirlineName(
+                                address airline
+                            )
+                            external
+                            view
+                            requireIsOperational
+                            requireAuthorizedCaller         
+                            returns (string memory)
     {
         return airlines[airline].name;
     }
@@ -222,11 +212,12 @@ contract FlightSuretyData {
      *
      */
     function getRegisteredAirlineCount() 
-        public 
-        view 
-        requireIsOperational
-        requireAuthorizedCaller 
-        returns (uint256) {
+                                        public 
+                                        view 
+                                        requireIsOperational
+                                        requireAuthorizedCaller 
+                                        returns (uint256) 
+    {
         return registeredAirlines.length;
     }
 
@@ -235,23 +226,26 @@ contract FlightSuretyData {
      *
      */
     function getFundedAirlineCount() 
-        public 
-        view 
-        requireIsOperational
-        requireAuthorizedCaller 
-        returns (uint256) {
+                                    public 
+                                    view 
+                                    requireIsOperational
+                                    requireAuthorizedCaller 
+                                    returns (uint256) 
+    {
         return fundedAirlines.length;
     }
 
     /**
      * @dev Checks whether an airline paid its fund
      */
-    function isAirlineFunded(address airline)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller        
-        returns (bool)
+    function isAirlineFunded(
+                                address airline
+                            )
+                            external
+                            view
+                            requireIsOperational
+                            requireAuthorizedCaller        
+                            returns (bool)
     {
         return airlines[airline].isFunded;
     }
@@ -259,29 +253,32 @@ contract FlightSuretyData {
     /**
      * @dev Checks whether an airline is registered
      */
-    function isAirlineRegistered(address airline)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller        
-        returns (bool)
+    function isAirlineRegistered(
+                                    address airline
+                                )
+                                external
+                                view
+                                requireIsOperational
+                                requireAuthorizedCaller        
+                                returns (bool)
     {
         return airlines[airline].isRegistered;
     }
 
     /**
-     * @dev Checks whether an airline is registered by name
+     * @dev Checks if an airline is registered by name
      */
-    function isAirlineNameRegistered(string calldata airlineName)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller        
-        returns (bool)
+    function isAirlineNameRegistered(
+                                        string calldata airlineName
+                                    )
+                                    external
+                                    view
+                                    requireIsOperational
+                                    requireAuthorizedCaller        
+                                    returns (bool)
     {
         for (uint256 i=0; i < registeredAirlineNames.length; i++) {
-            if (keccak256(abi.encodePacked(registeredAirlineNames[i]))
-                == keccak256(abi.encodePacked(airlineName))) {
+            if (keccak256(abi.encodePacked(registeredAirlineNames[i])) == keccak256(abi.encodePacked(airlineName))) {
                 return true;
             }            
         }        
@@ -295,34 +292,36 @@ contract FlightSuretyData {
      * @dev Register a flight
      */
     function registerFlight(
-        address airline,
-        string calldata flight,
-        uint256 departureTime,
-        uint8 statusCode
-    ) external requireIsOperational requireAuthorizedCaller returns (bool) {
-        bytes32 key = getFlightKey(airline, flight, departureTime);
-        flights[key] = Flight({
-            airline: airline,
-            flight: flight,
-            isRegistered: true,
-            timestamp: departureTime,
-            statusCode: statusCode
-        });
-        airlineFlights[airline].push(key);
-        flightKeys.push(key);
-        return flights[key].isRegistered;
+                                address airline,
+                                string calldata flight,
+                                uint256 departureTime,
+                                uint8 statusCode
+                            ) 
+                            external 
+                            requireIsOperational 
+                            requireAuthorizedCaller 
+                            returns (bool) 
+    {
+        bytes32 flightKey = getFlightKey(airline, flight, departureTime);
+        flights[flightKey] = Flight({airline: airline, flight: flight, isRegistered: true, timestamp: departureTime, statusCode: statusCode});
+        airlineFlights[airline].push(flightKey);
+        flightKeys.push(flightKey);
+        return flights[flightKey].isRegistered;
     }
 
     /**
      * @dev Returns all registered flights of an airline.
      *
      */
-    function getFlights(address airline) 
-        external 
-        view 
-        requireIsOperational
-        requireAuthorizedCaller        
-        returns (bytes32[] memory) {
+    function getFlights(
+                            address airline
+                        ) 
+                        external 
+                        view 
+                        requireIsOperational
+                        requireAuthorizedCaller        
+                        returns (bytes32[] memory) 
+    {
         return airlineFlights[airline];
     }
 
@@ -330,12 +329,14 @@ contract FlightSuretyData {
      * @dev Checks whether a flight is registered.
      *
      */
-    function isFlightRegistered(bytes32 flightKey)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller
-        returns (bool)
+    function isFlightRegistered(
+                                    bytes32 flightKey
+                                )
+                                external
+                                view
+                                requireIsOperational
+                                requireAuthorizedCaller
+                                returns (bool)
     {
         return flights[flightKey].isRegistered;
     }
@@ -344,15 +345,15 @@ contract FlightSuretyData {
      * @dev Updates a flight status code.
      *
      */
-    function updateFlightStatus(uint8 statusCode, bytes32 flightKey)
-        external
-        requireIsOperational
-        requireAuthorizedCaller        
+    function updateFlightStatus(
+                                    uint8 statusCode, 
+                                    bytes32 flightKey
+                                )
+                                external
+                                requireIsOperational
+                                requireAuthorizedCaller        
     {
-        require(
-            authorizedCallers[msg.sender] == true || (msg.sender == contractOwner),
-            "Caller is not authorized"
-        );        
+        require(authorizedCallers[msg.sender] == true || (msg.sender == contractOwner), "Caller not authorized");        
         flights[flightKey].statusCode = statusCode;
     }
 
@@ -360,11 +361,11 @@ contract FlightSuretyData {
      * @dev Returns all keys of registered flights
      */
     function getFlightKeys()
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller
-        returns (bytes32[] memory)
+                            external
+                            view
+                            requireIsOperational
+                            requireAuthorizedCaller
+                            returns (bytes32[] memory)
     {
         return flightKeys;
     }
@@ -372,17 +373,14 @@ contract FlightSuretyData {
     /** 
      * @dev Returns flight info
      */
-    function getFlight(bytes32 flightKey)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller        
-        returns (
-            address airline,
-            string memory flight,
-            uint256 departureTime,
-            uint8 statusCode
-        )
+    function getFlight(
+                            bytes32 flightKey
+                    )
+                    external
+                    view
+                    requireIsOperational
+                    requireAuthorizedCaller        
+                    returns (address airline, string memory flight, uint256 departureTime, uint8 statusCode)
     {
         airline = flights[flightKey].airline;
         flight = flights[flightKey].flight;
@@ -393,11 +391,13 @@ contract FlightSuretyData {
     /** 
      * @dev Checks whetehr a flight is delayed (status code 20)
      */
-    function IsFlightDelayed(bytes32 flightKey)
-    external
-    view
-    requireIsOperational
-    returns (bool)
+    function isFlightDelayed(
+                                bytes32 flightKey
+                            )
+                            external
+                            view
+                            requireIsOperational
+                            returns (bool)
     {
         return flightDelays[flightKey];
     }
@@ -406,10 +406,15 @@ contract FlightSuretyData {
      * @dev Builds a flight key
      */
     function getFlightKey(
-        address airline,
-        string memory flight,
-        uint256 departureTime
-    ) internal view requireIsOperational returns (bytes32) {
+                            address airline,
+                            string memory flight,
+                            uint256 departureTime
+                        ) 
+                        internal 
+                        view 
+                        requireIsOperational 
+                        returns (bytes32) 
+    {
         return keccak256(abi.encodePacked(airline, flight, departureTime));
     }
 
@@ -418,17 +423,18 @@ contract FlightSuretyData {
     /*------------------------------------------------------------------------------------------*/
 
     function buyInsurance(
-        address airline,
-        string calldata flight,
-        uint256 departureTime,
-        address passenger,
-        uint256 amount
-    ) external requireIsOperational requireAuthorizedCaller {
+                            address airline,
+                            string calldata flight,
+                            uint256 departureTime,
+                            address passenger,
+                            uint256 amount
+                        ) 
+                        external 
+                        requireIsOperational 
+                        requireAuthorizedCaller 
+    {
         bytes32 flightKey = getFlightKey(airline, flight, departureTime);
-        require(
-            bytes(flights[flightKey].flight).length > 0,
-            "Flight does not exist"
-        );
+        require(bytes(flights[flightKey].flight).length > 0, "Flight not registered");
         insurances[flightKey].insuranceAmount[passenger] = amount;
         insurances[flightKey].passengers.push(passenger);
         insurances[flightKey].isPaidOut = false;
@@ -437,12 +443,14 @@ contract FlightSuretyData {
     /**
      *  @dev Returns all insured passengers of a flight
      */
-    function getInsurees(bytes32 flightKey)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller
-        returns (address[] memory)
+    function getInsurees(
+                            bytes32 flightKey
+                        )
+                        external
+                        view
+                        requireIsOperational
+                        requireAuthorizedCaller
+                        returns (address[] memory)
     {
         return insurances[flightKey].passengers;
     }
@@ -452,25 +460,32 @@ contract FlightSuretyData {
      *
      */
     function getPremium(
-        address airline,
-        string calldata flight,
-        uint256 departureTime,
-        address passenger
-    ) external view requireAuthorizedCaller returns (uint256) {
-        bytes32 flightKey = getFlightKey(airline, flight, departureTime);
-        return insurances[flightKey].insuranceAmount[passenger];
+                            address airline,
+                            string calldata flight,
+                            uint256 departureTime,
+                            address passenger
+                        ) 
+                        external 
+                        view 
+                        requireAuthorizedCaller 
+                        returns (uint256) 
+    {
+        return insurances[getFlightKey(airline, flight, departureTime)].insuranceAmount[passenger];
     }
 
     /**
      *  @dev Returns paid insurance premium by flight key and passenger
      *
      */
-    function getPremium(bytes32 flightKey, address passenger)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller
-        returns (uint256)
+    function getPremium(
+                            bytes32 flightKey, 
+                            address passenger
+                        )
+                        external
+                        view
+                        requireIsOperational
+                        requireAuthorizedCaller
+                        returns (uint256)
     {
         return insurances[flightKey].insuranceAmount[passenger];
     }
@@ -480,25 +495,32 @@ contract FlightSuretyData {
      *
      */
     function getPayOutAmount(
-        address airline,
-        string calldata flight,
-        uint256 departureTime,
-        address passenger
-    ) external view requireAuthorizedCaller returns (uint256) {
-        bytes32 flightKey = getFlightKey(airline, flight, departureTime);
-        return insurances[flightKey].payOutAmount[passenger];
+                                address airline,
+                                string calldata flight,
+                                uint256 departureTime,
+                                address passenger
+                            ) 
+                            external 
+                            view 
+                            requireAuthorizedCaller 
+                            returns (uint256) 
+    {
+        return insurances[getFlightKey(airline, flight, departureTime)].payOutAmount[passenger];
     }
 
     /**
      *  @dev Returns passenger refunded amount by flight key and passenger
      *
      */
-    function getPayOutAmount(bytes32 flightKey, address passenger)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller
-        returns (uint256)
+    function getPayOutAmount(
+                                bytes32 flightKey, 
+                                address passenger
+                            )
+                            external
+                            view
+                            requireIsOperational
+                            requireAuthorizedCaller
+                            returns (uint256)
     {
         return insurances[flightKey].payOutAmount[passenger];
     }
@@ -507,12 +529,14 @@ contract FlightSuretyData {
      *  @dev Checks whether insurance was paid to passengers
      *
      */
-    function isInsurancePaidOut(bytes32 flightKey)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller
-        returns (bool)
+    function isInsurancePaidOut(
+                                    bytes32 flightKey
+                                )
+                                external
+                                view
+                                requireIsOperational
+                                requireAuthorizedCaller
+                                returns (bool)
     {
         return insurances[flightKey].isPaidOut;
     }
@@ -522,12 +546,14 @@ contract FlightSuretyData {
      *  @dev Returns passenger total refunds for all insured flights
      *
      */
-    function getBalance(address passenger)
-        external
-        view
-        requireIsOperational
-        requireAuthorizedCaller
-        returns (uint256)
+    function getBalance(
+                            address passenger
+                        )
+                        external
+                        view
+                        requireIsOperational
+                        requireAuthorizedCaller
+                        returns (uint256)
     {
         return insuranceRefunds[passenger];
     }
@@ -535,10 +561,12 @@ contract FlightSuretyData {
     /**
      *  @dev Credits payouts to insurees
      */
-    function creditInsurees(bytes32 flightKey)
-        external
-        requireIsOperational
-        requireAuthorizedCaller
+    function creditInsurees(
+                                bytes32 flightKey
+                            )
+                            external
+                            requireIsOperational
+                            requireAuthorizedCaller
     {
         // set flight as delayed due to status code 20.
         flightDelays[flightKey] = true;
@@ -562,14 +590,16 @@ contract FlightSuretyData {
      *  @dev Transfers payout to insuree
      *  
      */
-    function payInsuree(address payable passenger)
-        external
-        requireIsOperational
-        requireAuthorizedCaller
+    function payInsuree(
+                            address payable passenger
+                        )
+                        external
+                        requireIsOperational
+                        requireAuthorizedCaller
     {
         uint256 amount = insuranceRefunds[passenger];
         
-        require(address(this).balance >= amount, "No enough funds available on contract to pay the insuree");
+        require(address(this).balance >= amount, "No enough funds available");
 
         for (uint256 i=0; i < flightKeys.length; i++) {
             bytes32 flightKey = flightKeys[i];

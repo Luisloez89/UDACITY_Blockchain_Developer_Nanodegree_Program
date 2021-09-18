@@ -164,10 +164,10 @@ export default class Contract {
         return result;
     }
 
-    async IsFlightDelayed(request){
+    async isFlightDelayed(request){
         let caller = request.from || this.owner;
         let instance = await this.getContractInstance();
-        return await instance.IsFlightDelayed(request.flightKey, {from: caller});
+        return await instance.isFlightDelayed(request.flightKey, {from: caller});
     }
 
     async isFlightRegistered(request){
