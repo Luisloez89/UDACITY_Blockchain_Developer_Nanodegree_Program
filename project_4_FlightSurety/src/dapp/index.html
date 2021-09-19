@@ -39,7 +39,7 @@
                 <div class="modal-body" id="success-message-body">
                     <p id="success-message"></p>
                 </div>
-            </div><
+            </div>
         </div>
     </div>
 
@@ -58,28 +58,28 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="section-title" id="authorized-status" style="display:none">Contract<i class="bi bi-check-circle-fill authorized-status" id="authorized-status-icon">
-                    <span class="status-text">Authorized</span></i>
+                </span class="status-text"></i>
                 </h1>
                 <h1 class="section-title" id="not-authorized-status" style="display:inline-block">Contract<i class="bi bi-x-circle-fill not-authorized-status" id="not-authorized-status-icon">
-                    <span class="status-text">Not Authorized</span></i>
+                </span class="status-text"></i>
                 </h1>
                 <form>
                     <div class="form-group">
-                        <input type="button" class="btn btn-info text-white" id="authorize-contract" value="Authorize Contract">
-                        <input type="button" class="btn btn-info text-white" id="deauthorize-contract" value="Deauthorize Contract">
+                        <input type="button" class="btn btn-primary text-white" id="authorize-contract" value="Authorize Contract">
+                        <input type="button" class="btn btn-primary text-white" id="deauthorize-contract" value="Deauthorize Contract">
                     </div>
                 </form>
                 <!-- Operational Status -->
                 <h3 class="section-title" id="operating-status" style="display:none">Operational Status<i class="bi bi-check-circle-fill authorized-status" id="authorized-status-icon">
-                    <span class="status-text">Operating</span></i>
+                </span class="status-text"></i>
                 </h3>
                 <h3 class="section-title" id="non-operating-status" style="display:inline-block">Operational Status<i class="bi bi-x-circle-fill not-authorized-status" id="not-authorized-status-icon">
-                    <span class="status-text">Not Operating</span></i>
+                </span class="status-text"></i>
                 </h3>                
                 <form>
                     <div class="form-group">
-                        <input type="button" class="btn btn-info text-white" id="operation-turn-off" value="Turn Operation Off">
-                        <input type="button" class="btn btn-info text-white" id="operation-turn-on" value="Turn Operation On">
+                        <input type="button" class="btn btn-primary text-white" id="operation-turn-off" value="Turn Operation Off">
+                        <input type="button" class="btn btn-primary text-white" id="operation-turn-on" value="Turn Operation On">
                     </div>
                 </form>
             </div>
@@ -92,7 +92,7 @@
             <div class="col-12" id="airlines-registration-form">
                 <h1 class="section-title">Airlines</h1>
                 <!-- Registration -->
-                <h3 class="text-warning">Registration</h3>
+                <h3 class="text-info">Registration</h3>
                 <form>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">New Airline</label>
@@ -107,7 +107,7 @@
                         <select class="form-control col-7" id="airlines-register-by-airline-address"></select>
                     </div>
                     <div class="form-group">
-                        <input type="button" class="btn btn-info text-white" id="register-airline"
+                        <input type="button" class="btn btn-primary text-white" id="register-airline"
                             value="Register Airline">
                     </div>
                 </form>
@@ -115,14 +115,14 @@
             </div>
             <!-- Funding -->
             <div class="col-12" id="funding-form">
-                <h3 class="text-warning">Funding</h3>
+                <h3 class="text-info">Funding</h3>
                 <form>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Airline to Fund</label>
                         <select class="form-control col-7" id="funding-registered-airlines"></select>
                     </div>
                     <div class="form-group">
-                        <input type="button" class="btn btn-info text-white" id="fund-airline" value="Fund (10 ether)">
+                        <input type="button" class="btn btn-primary text-white" id="fund-airline" value="Fund (10 ether)">
                     </div>
                 </form>
             </div>
@@ -134,7 +134,7 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="section-title">Flights</h1>
-                <h3 class="text-warning">Register Flight</h3>
+                <h3 class="text-info">Register Flight</h3>
                 <form>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Airline</label>
@@ -145,7 +145,7 @@
                         <select class="form-control col-7" id="flights-no-departure"></select>
                     </div>
                     <div class="form-group">
-                        <input type="button" class="btn btn-info text-white" id="register-flight"
+                        <input type="button" class="btn btn-primary text-white" id="register-flight"
                             value="Register Flight">
                     </div>
                 </form>
@@ -158,7 +158,7 @@
         <div class="row">
             <div class="col-12" id="insurances-form">
                 <h1 class="section-title">Insurances</h1>
-                <h4 class="text-warning">Buy Flight Insurance</h4>
+                <h4 class="text-info">Buy Flight Insurance</h4>
                 <form id="insurances-buy-form">
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Flight</label>
@@ -174,11 +174,11 @@
                             id="buy-insurance-payment-amount" placeholder="Up to 1 ether">
                     </div>
                     <div class="form-group">
-                        <input type="button" class="btn btn-info text-white" id="buy-insurance" value="Buy Insurance">
+                        <input type="button" class="btn btn-primary text-white" id="buy-insurance" value="Buy Insurance">
                     </div>
                 </form>
                 <hr class="bg-white" />
-                <h4 class="text-warning">Withdraw Insurance Payment</h4>
+                <h4 class="text-info">Withdraw Insurance Payment</h4>
                 <form id="insurances-withdraw-form">
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Passenger</label>
@@ -187,7 +187,7 @@
                         <input type="number" class="form-control col-3" value="0" id="insurance-passenger-balance">
                     </div>
                     <div class="form-group">
-                        <input type="button" class="btn btn-info text-white" id="withdraw-insurance-amount"
+                        <input type="button" class="btn btn-primary text-white" id="withdraw-insurance-amount"
                             value="Withdraw">
                     </div>
                 </form>
