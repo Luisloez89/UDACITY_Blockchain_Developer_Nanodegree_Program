@@ -103,4 +103,12 @@ dist
 # TernJS port file
 .tern-port
 
-.secret
+# MAC
+.DS_Store
+
+# development
+build
+build_webpack
+
+#production
+prod/
