@@ -14,22 +14,39 @@ contract Ownable {
     //  4) fill out the transferOwnership function
     //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
 
+    /********************************************************************************************/
+    /*                                       DATA VARIABLES                                     */
+    /********************************************************************************************/
     address private _owner;
 
+    /********************************************************************************************/
+    /*                                       CONSTRUCTOR                                        */
+    /********************************************************************************************/
+    /**
+     * @dev Contract constructor
+     *
+     */
     constructor () internal {
         _owner = msg.sender;
         emit OwnershipTransferred(msg.sender);
     }
 
-    //Events
+    /********************************************************************************************/
+    /*                                       EVENTS                                             */
+    /********************************************************************************************/
     event OwnershipTransferred(address addr);
 
-    //Modifiers
+    /********************************************************************************************/
+    /*                                       FUNCTION MODIFIERS                                 */
+    /********************************************************************************************/
     modifier onlyOwner() {
         require(msg.sender == _owner,"Only the owner is allowed");
         _;
     }
 
+    /********************************************************************************************/
+    /*                                     SMART CONTRACT FUNCTIONS                             */
+    /********************************************************************************************/
     function transferOwnership(address newOwner) public onlyOwner {
         // TODO add functionality to transfer control of the contract to a newOwner.
         // make sure the new owner is a real address
@@ -51,6 +68,51 @@ contract Ownable {
 //  3) create an internal constructor that sets the _paused variable to false
 //  4) create 'whenNotPaused' & 'paused' modifier that throws in the appropriate situation
 //  5) create a Paused & Unpaused event that emits the address that triggered the event
+
+contract Pausable is Ownable {
+
+    /********************************************************************************************/
+    /*                                       DATA VARIABLES                                     */
+    /********************************************************************************************/
+    bool private _paused;
+
+    /********************************************************************************************/
+    /*                                       CONSTRUCTOR                                        */
+    /********************************************************************************************/
+    /**
+     * @dev Contract constructor
+     *
+     */
+    constructor () internal {
+        _paused = false;
+    }
+
+    /********************************************************************************************/
+    /*                                       FUNCTION MODIFIERS                                 */
+    /********************************************************************************************/
+    modifier whenNotPaused() {
+        require(_paused == false, "Contract is paused");
+        _;
+    }
+
+    modifier paused() {
+        require(_paused == true, "Contract is not paused");
+        _;
+    } 
+
+    /********************************************************************************************/
+    /*                                       EVENTS                                             */
+    /********************************************************************************************/
+    event Paused(address addr, uint amount);
+    event Unpaused(address addr, uint amount);
+
+    /********************************************************************************************/
+    /*                                     SMART CONTRACT FUNCTIONS                             */
+    /********************************************************************************************/
+    function setPaused(bool isPaused) public onlyOwner {
+        _paused = isPaused;
+    }
+}
 
 contract ERC165 {
     bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
