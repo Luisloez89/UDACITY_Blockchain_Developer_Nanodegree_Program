@@ -1,7 +1,7 @@
 var HouseListingToken = artifacts.require('HouseListingToken');
 
 contract('TestERC721Mintable', accounts => {
-    const MINTED_TOKENS = 10;
+    const MINTED_TOKENS = 5;
 
     const account_one = accounts[0];
     const account_two = accounts[1];
@@ -90,7 +90,7 @@ contract('TestERC721Mintable', accounts => {
 
     describe('have ownership properties', function () {
         beforeEach(async function () { 
-            this.contract = await NonFungiblePropertyERC721Token.new({from: account_one});
+            this.contract = await HouseListingToken.new({from: account_one});
         })
 
         it('should fail when minting when address is not contract owner', async function () { 
