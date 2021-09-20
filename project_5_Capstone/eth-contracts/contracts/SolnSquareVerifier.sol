@@ -1,40 +1,95 @@
-pragma solidity >=0.4.21 <0.6.0;
+pragma solidity ^0.5.0;
 
-// TODO define a contract call to the zokrates generated solidity contract <Verifier> or <renamedVerifier>
+import "./ERC721Mintable.sol";
+import "./Verifier.sol";
 
+contract SolnSquareVerifier is HouseListingToken, Verifier {
+    struct Solution {
+        address to;
+        uint256[2] a;
+        uint256[2][2] b;
+        uint256[2] c;
+        uint256[2] input;
+    }
 
+    Solution[] solutions;
+    mapping(bytes32 => bool) uniqueSolutions;
 
-// TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class
+    event SolutionAdded(
+        address to,
+        uint256[2] a,
+        uint256[2][2] b,
+        uint256[2] c,
+        uint256[2] input
+    );
 
+    function CheckIfSolutionExists(bytes32 key) public view returns (bool) {
+        return uniqueSolutions[key];
+    }
 
+    function buildKey(
+        address to,
+        uint256[2] memory a,
+        uint256[2][2] memory b,
+        uint256[2] memory c,
+        uint256[2] memory input
+    ) public pure returns (bytes32) {
+        return keccak256(abi.encodePacked(to, a, b, c, input));
+    }
 
-// TODO define a solutions struct that can hold an index & an address
+    function addSolution(
+        address to,
+        uint256[2] memory a,
+        uint256[2][2] memory b,
+        uint256[2] memory c,
+        uint256[2] memory input
+    ) public {
+        Solution memory newSolution;
+        newSolution.to = to;
+        newSolution.a = a;
+        newSolution.b = b;
+        newSolution.c = c;
+        newSolution.input = input;
+        bytes32 newSolutionKey =
+            buildKey(
+                newSolution.to,
+                newSolution.a,
+                newSolution.b,
+                newSolution.c,
+                newSolution.input
+            );
+        require(
+            CheckIfSolutionExists(newSolutionKey) == false,
+            "Solution already exists"
+        );
+        require(
+            super.verifyTx(a, b, c, input),
+            "Solution could not be verified"
+        );
+        // Add solution to make sure this solution can’t be used in the future
+        solutions.push(newSolution);
+        uniqueSolutions[newSolutionKey] = true;
+        emit SolutionAdded(
+            newSolution.to,
+            newSolution.a,
+            newSolution.b,
+            newSolution.c,
+            newSolution.input
+        );
+    }
 
-
-// TODO define an array of the above struct
-
-
-// TODO define a mapping to store unique solutions submitted
-
-
-
-// TODO Create an event to emit when a solution is added
-
-
-
-// TODO Create a function to add the solutions to the array and emit the event
-
-
-
-// TODO Create a function to mint new NFT only after the solution has been verified
-//  - make sure the solution is unique (has not been used before)
-//  - make sure you handle metadata as well as tokenSuplly
-
-  
-
-
-
-
+    function mintNFT(
+        address to,
+        uint256 tokenId,
+        uint256[2] memory a,
+        uint256[2][2] memory b,
+        uint256[2] memory c,
+        uint256[2] memory input
+    ) public {
+        addSolution(to, a, b, c, input);
+        super.mint(to, tokenId);
+    }
+}
 
 
 
