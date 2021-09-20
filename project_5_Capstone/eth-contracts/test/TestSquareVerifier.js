@@ -1,5 +1,5 @@
 let verifier = artifacts.require('./Verifier');
-let zKProof = require('../../zokrates/code/square/proof');
+let zKProof = require('../../zokrates/code/proof');
 
 contract('Testverifier', accounts => {
     const account1 = accounts[0];
