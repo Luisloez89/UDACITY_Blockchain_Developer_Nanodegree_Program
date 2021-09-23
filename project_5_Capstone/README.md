@@ -79,6 +79,14 @@ truffle migrate --reset --network rinkeby
 
 ```
 
+## Deployed Contracts Info
+Contract addresses on Rinkeby Network:
+Contract       |  Address
+------------ | -------------
+Verifier         |[0xe547136dfD5Ce675077Bd3c5148F02906611b450](https://rinkeby.etherscan.io/address/0xe547136dfD5Ce675077Bd3c5148F02906611b450)
+SolnSquareVerifier |[0x1d41247a91DbCb4699b08987cC172cF746c241A5](https://rinkeby.etherscan.io/address/0x1d41247a91DbCb4699b08987cC172cF746c241A5)
+
+
 # Project Resources
 
 * [Remix - Solidity IDE](https://remix.ethereum.org/)
