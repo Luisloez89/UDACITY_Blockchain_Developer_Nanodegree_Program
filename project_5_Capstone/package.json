@@ -1,0 +1,21 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "lite-server": "2.4.0"
+  },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.5.0",
+    "openzeppelin-solidity": "^2.2.0",
+    "solc": "^0.5.2",
+    "solc-js": "^0.5.2",
+    "truffle-hdwallet-provider": "^1.0.17"
+  }
+}
