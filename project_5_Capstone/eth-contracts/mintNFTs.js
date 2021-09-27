@@ -4,11 +4,11 @@ const fs = require("fs");
 
 const MNEMONIC = fs.readFileSync(".secret").toString().trim();
 const INFURA_KEY = fs.readFileSync(".infura_key").toString().trim();
-let NFT_CONTRACT_ADDRESS = '0xe547136dfD5Ce675077Bd3c5148F02906611b450'
+let NFT_CONTRACT_ADDRESS = '0xc0c546F302fcA88B9007cb0F8bE1312e89Fc26f4'
 let OWNER_ADDRESS = '0x1d41247a91DbCb4699b08987cC172cF746c241A5'
-const TOKEN_ID = 1
+const TOKEN_ID = 10
 
-const proof =  JSON.parse(fs.readFileSync(`../zokrates/code/proof.json`));
+const proof =  JSON.parse(fs.readFileSync(`../zokrates/code/proof${TOKEN_ID}.json`));
 
 const NFT_ABI = JSON.parse(fs.readFileSync(`./build/contracts/SolnSquareVerifier.json`)).abi;
 
