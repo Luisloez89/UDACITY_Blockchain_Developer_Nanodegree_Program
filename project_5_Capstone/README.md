@@ -83,8 +83,18 @@ truffle migrate --reset --network rinkeby
 Contract addresses on Rinkeby Network:
 Contract       |  Address
 ------------ | -------------
-Verifier         |[0xe547136dfD5Ce675077Bd3c5148F02906611b450](https://rinkeby.etherscan.io/address/0xe547136dfD5Ce675077Bd3c5148F02906611b450)
-SolnSquareVerifier |[0x1d41247a91DbCb4699b08987cC172cF746c241A5](https://rinkeby.etherscan.io/address/0x1d41247a91DbCb4699b08987cC172cF746c241A5)
+Verifier         |[0x07CEC0e501B05722D42bd3481ef017C6a2c12010](https://rinkeby.etherscan.io/address/0x07CEC0e501B05722D42bd3481ef017C6a2c12010)
+SolnSquareVerifier |[0xc0c546F302fcA88B9007cb0F8bE1312e89Fc26f4](https://rinkeby.etherscan.io/address/0xc0c546F302fcA88B9007cb0F8bE1312e89Fc26f4)
+
+## Minting Tokens
+
+`10 HLT (House Listing Token)` tokens were minted on Rinkeby testnet: 
+[https://rinkeby.etherscan.io/token/0xc0c546f302fca88b9007cb0f8be1312e89fc26f4](https://rinkeby.etherscan.io/token/0xc0c546f302fca88b9007cb0f8be1312e89fc26f4)
+
+
+## OpenSea MarketPlace Storefront
+[OpenSea MarketPlace Storefront](https://testnets.opensea.io/collection/house-listing-token)
+
 
 
 # Project Resources
