@@ -87,7 +87,7 @@ Verifier         |[0x07CEC0e501B05722D42bd3481ef017C6a2c12010](https://rinkeby.e
 SolnSquareVerifier |[0xc0c546F302fcA88B9007cb0F8bE1312e89Fc26f4](https://rinkeby.etherscan.io/address/0xc0c546F302fcA88B9007cb0F8bE1312e89Fc26f4)
 
 ## SolnSquareVerifier Contract ABI
-[SolnSquareVerifier contract ABI](/eth-contracts/SolnSquareVerifier-abi.json)
+[SolnSquareVerifier contract ABI](eth-contracts/SolnSquareVerifier-abi.json)
 
 ## Minting Tokens
 
